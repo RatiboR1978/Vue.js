@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <form action="#" class="form" v-if="!show">
+      <div>
+        <label>Email</label><br>
+        <input type="text" name="email" v-model="email">
+      </div>
+      <div>
+        <label>First Name</label><br>
+        <input type="text" name="first_name" v-model="firstName">
+      </div>
+      <div>
+        <label>Last Name</label><br>
+        <input type="text" name="last_name" v-model="lastName">
+      </div>
+      <div>
+        <label>Phone</label><br>
+        <input type="text" name="phone" v-model="phone">
+      </div>
+      <div class="wrap but">
+        <p>Guests</p>
+        <input class="guest" type='button' @click="addGuest" value="+">
+      </div>
+      <div v-for="(str, index) in guests">
+        <p class="guestName" @dblclick="removeGuest(index)">Guest {{index + 1}}</p>
+        <input type="text" v-model="guests[index]">
+      </div>
+      <input class="send" type='button' @click="showTable" value="Send data">
+    </form>
+    <table class="table" v-if="show">
+      <tr>
+        <td>Email</td>
+        <td>{{ email }}</td>
+      </tr>
+      <tr>
+        <td>First Name</td>
+        <td>{{ firstName }}</td>
+      </tr>
+      <tr>
+        <td>Last Name</td>
+        <td>{{ lastName }}</td>
+      </tr>
+      <tr>
+        <td>Phone</td>
+        <td>{{ phone }}</td>
+      </tr>
+      <tr>
+        <td>Guests</td>
+        <td>
+          <ul v-for="(str, index) in guests">
+            <li v-model="guests[index]">{{guests[index]}}</li>
+          </ul>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <script src="js/libs.min.js"></script>
+  <script src="js/common.js"></script>
+</body>
+</html>
